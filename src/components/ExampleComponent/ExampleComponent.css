@@ -1,0 +1,8 @@
+p {
+    display: inline-block;
+    color: rgb(255, 135, 30);
+}
+
+.red {
+    color: red;
+}
