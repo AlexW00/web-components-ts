@@ -6,6 +6,8 @@ import { setupCounter } from "./counter";
 import ExampleComponent from "./components/ExampleComponent/ExampleComponent";
 import WebComponentLoader from "./components/WebComponentLoader";
 
+WebComponentLoader.loadAll();
+
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -26,4 +28,3 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 `;
 
 setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
-WebComponentLoader.loadAll();
