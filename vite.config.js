@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import replace from "@rollup/plugin-replace";
+import GlobPlugin from "vite-plugin-glob";
 
 export default defineConfig({
 	// mark components as assets
@@ -11,6 +12,10 @@ export default defineConfig({
 			},
 			delimiters: ["", ""],
 			include: ["src/components/**/*.ts"],
+		}),
+		GlobPlugin({
+			// enable to let this plugin interpret `import.meta.glob`
+			// takeover: true,
 		}),
 	],
 });

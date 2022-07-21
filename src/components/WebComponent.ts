@@ -12,6 +12,8 @@ export default abstract class WebComponent extends HTMLElement {
 
 	abstract onConnected(): void;
 
+	abstract get htmlTagName(): string;
+
 	get root(): ShadowRoot {
 		if (this.shadowRoot) return this.shadowRoot;
 		else throw new Error("WebComponent.root is not available yet");

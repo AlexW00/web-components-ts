@@ -7,14 +7,16 @@ export default class ExampleComponent extends WebComponent {
 	name: string = "";
 
 	constructor() {
+		console.log("ExampleComponent constructor");
 		super(html, css);
 	}
 
 	onConnected(): void {
-		console.log("ExampleComponent connected");
 		this.name = this.getAttribute("name") || "";
 		this.root.querySelector("h1")!.innerHTML = `Hello ${this.name}!`;
 	}
-}
 
-customElements.define("example-component", ExampleComponent);
+	get htmlTagName(): string {
+		return "example-component";
+	}
+}

@@ -1,0 +1,49 @@
+import WebComponent from "./WebComponent";
+
+// Class to load all web components in the ./ directory and define them
+// WebComponentLoader.loadAll() must be called before any web component is used
+export default class WebComponentLoader {
+	private static componentDefinitions: ComponentDefinition<WebComponent>[] = [];
+
+	public static async loadAll(): Promise<void> {
+		// @ts-ignore
+		const modules: GlobImport = import.meta.importGlob("./**/*.ts");
+		const modulePaths = Object.keys(modules);
+		for (const modulePath of modulePaths) {
+			const module = await modules[modulePath]();
+			const componentClass = module.default;
+			if (componentClass && componentClass.prototype.htmlTagName) {
+				const componentDefinition = new ComponentDefinition(
+					componentClass.prototype.htmlTagName,
+					componentClass
+				);
+				WebComponentLoader.addComponentDefinition(componentDefinition);
+			}
+		}
+		WebComponentLoader.defineAll();
+	}
+
+	private static addComponentDefinition(
+		componentDefinition: ComponentDefinition<WebComponent>
+	): void {
+		this.componentDefinitions.push(componentDefinition);
+	}
+
+	private static defineAll(): void {
+		this.componentDefinitions.forEach((componentDefinition) =>
+			componentDefinition.defineSelf()
+		);
+	}
+}
+
+class ComponentDefinition<T extends WebComponent> {
+	constructor(public name: string, public componentConstructor: new () => T) {}
+
+	public defineSelf(): void {
+		customElements.define(this.name, this.componentConstructor);
+	}
+}
+
+interface GlobImport {
+	[key: string]: () => Promise<any>;
+}
