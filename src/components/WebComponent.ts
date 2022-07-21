@@ -35,7 +35,29 @@ export default abstract class WebComponent extends HTMLElement {
 
 	async loadHtml() {
 		const template = document.createElement("template");
-		template.innerHTML = this.html;
+		const innerHTML = this.createInnerHtml();
+		console.log(`innerHTML: ${innerHTML}`);
+		template.innerHTML = innerHTML;
 		this.root.appendChild(template.content.cloneNode(true));
+	}
+
+	private createInnerHtml(): string {
+		// replace any ${...} with the value of the attribute with the same name
+		return this.html.replace(/"\$\{([^}]*)\}"/g, (_, name: string) => {
+			// @ts-ignore
+			const value = this[name];
+			if (value) {
+				if (typeof value == "string" || typeof value == "number")
+					return `"${value}"`;
+				else
+					console.error(
+						`Property ${name} of ${this.constructor.name} is not a string or number`
+					);
+			} else
+				console.error(
+					`Property ${name} is not defined in ${this.constructor.name}`
+				);
+			return '""';
+		});
 	}
 }
