@@ -1,9 +1,19 @@
-import "./style.css";
+import ExampleComponent from "./components/ExampleComponent/ExampleComponent";
 import WebComponentLoader from "./components/WebComponentLoader";
+import { LiveValue } from "./data/LiveValue";
+import ExampleModel from "./data/models/ExampleModel";
 
-WebComponentLoader.loadAll();
+const exampleModel: ExampleModel = new ExampleModel("John", 0);
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-    <example-component name="Vite"></example-component>
+WebComponentLoader.loadAll().then(() => {
+	const exampleComponent: ExampleComponent = new ExampleComponent(
+		exampleModel.getViewModel()
+	);
+	document.querySelector<HTMLDivElement>("#app")!.append(exampleComponent);
 
-`;
+	exampleModel
+		.getViewModel()
+		.addEventListener(LiveValue.LIVE_DATA_CHANGED_EVENT, (data: any) => {
+			console.log("MAIN ViewModel changed:", data);
+		});
+});

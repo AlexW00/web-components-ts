@@ -4,7 +4,7 @@ import { Observable } from "../events/Observable";
 // ====================== LiveValue ====================== //
 // ====================================================== //
 
-// Wrapper class to make any object observable
+// Wrapper class to make any object/primitive observable
 
 // Usage:
 // 1. create a new LiveValue object: new LiveValue(data)
@@ -39,6 +39,8 @@ export class LiveValue<T> extends Observable {
 		},
 
 		// return new proxy for nested objects
+		// to avoid creating new proxies for already proxied objects the following code was adopted from:
+		// https://stackoverflow.com/questions/41299642/how-to-use-javascript-proxy-for-nested-objects
 		get: (object: any, key: string | symbol) => {
 			if (key == "isProxy") return true;
 
@@ -60,6 +62,6 @@ export class LiveValue<T> extends Observable {
 
 	set value(value: T) {
 		this._setValue(value);
-		this.notifyAll(LiveValue.LIVE_DATA_CHANGED_EVENT, value);
+		this.notifyAll(LiveValue.LIVE_DATA_CHANGED_EVENT, this);
 	}
 }

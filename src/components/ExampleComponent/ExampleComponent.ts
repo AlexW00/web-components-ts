@@ -1,4 +1,3 @@
-import { LiveValue } from "../../data/LiveValue";
 import ExampleModel from "../../data/models/ExampleModel";
 import ViewModel from "../../data/ViewModel";
 import WebComponent from "../WebComponent";
@@ -9,60 +8,18 @@ import WebComponent from "../WebComponent";
 
 // import the html and css files of the component
 import css from "./ExampleComponent.css";
-import html from "./ExampleComponent.html?raw"; // to import html files, you must add "?raw" to the end of the path
+import html from "./ExampleComponent.html";
 
 export default class ExampleComponent extends WebComponent {
-	someClassProperty: string = "Hello World";
-
-	testViewModel: ViewModel<ExampleModel> = new ExampleModel(
-		"test",
-		42
-	).getViewModel();
-
-	testLiveValue: LiveValue<number> = new LiveValue(0);
-
-	testLiveArray: LiveValue<Array<number>> = new LiveValue([]);
-
-	testLiveObjectNested: LiveValue<any> = new LiveValue({
-		test: "test",
-		nest1: {
-			nest2: {
-				nest3: "test",
-			},
-		},
-	});
+	exampleViewModel: ViewModel<ExampleModel>;
 
 	// the super constructor must be called with:
-	// - the html of the component
-	// - the css of the component (optional)
+	// - the html of the component (optional) -> if not provided, an empty <template> will be created
+	// - the css of the component (optional) -> if not provided, no style will be added to the component
 	// to get these values, you can import them from the html and css files (see import statements above)
-	constructor() {
+	constructor(exampleViewModel: ViewModel<ExampleModel>) {
 		super(html, css);
-	}
-
-	// override onConnected, to add listeners, set data, etc.
-	onConnected(): void {
-		// here we get the value of the attribute "name"
-		// the attribute "name" is set in the html by <example-component name="..." />
-		const name = this.getAttribute("name") || "";
-
-		// now we set the text content of the component to the value of the attribute "name"
-		this.root.querySelector("h1")!.innerHTML = `Hello ${name}!`;
-
-		this.root.querySelector("p")!.addEventListener("click", () => {
-			console.log("clicked");
-			this.testViewModel.value.p1 = "test";
-		});
-
-		this.root.querySelector("h1")!.addEventListener("click", () => {
-			console.log("clicked");
-			this.testLiveObjectNested.value.nest1 =
-				this.testLiveObjectNested.value.nest1 + "x";
-		});
-
-		this.testLiveObjectNested.addEventListener("change", (data: any) => {
-			console.log("changed", data);
-		});
+		this.exampleViewModel = exampleViewModel;
 	}
 
 	// override htmlTagName to return the tag name our component
@@ -70,4 +27,37 @@ export default class ExampleComponent extends WebComponent {
 	get htmlTagName(): string {
 		return "example-component";
 	}
+
+	// override onConnected, to add listeners, set data, etc.
+	onConnected(): void {
+		// set the initial values of the component
+		this.root.querySelector(
+			"h1"
+		)!.innerHTML = `Hello ${this.exampleViewModel.value.name}!`;
+
+		this.root.querySelector(
+			"#count"
+		)!.innerHTML = `${this.exampleViewModel.value.count}`;
+
+		// set the listeners for the button and the view model
+		this.root
+			.querySelector("button")!
+			.addEventListener("click", this.onButtonClicked);
+
+		this.exampleViewModel.addEventListener("change", this.onViewModelChanged);
+	}
+
+	// this method is called, when the button is clicked
+	onButtonClicked = () => {
+		this.exampleViewModel.value.count++;
+	};
+
+	// this method is called, when the view model changes
+	// -> we need to update our component with the new values
+	onViewModelChanged = (data: any) => {
+		this.root.querySelector(
+			"#count"
+		)!.innerHTML = `${this.exampleViewModel.value.count}`;
+		console.log("COMPONENT ViewModel changed:", data);
+	};
 }

@@ -9,12 +9,12 @@
 
 export default abstract class WebComponent extends HTMLElement {
 	html: string;
-	css: string | undefined;
+	css: string;
 
-	constructor(html: string, css?: string) {
+	constructor(html?: string, css?: string) {
 		super();
-		this.html = html; // the html of the component
-		this.css = css; // css is optional
+		this.html = html ?? ""; // the html of the component
+		this.css = css ?? ""; // css is optional
 		this.attachShadow({ mode: "open" });
 	}
 
@@ -39,7 +39,7 @@ export default abstract class WebComponent extends HTMLElement {
 	}
 
 	async loadStylesheet() {
-		if (this.css) {
+		if (this.css !== "") {
 			const style = document.createElement("style");
 			style.innerHTML = this.css;
 			this.root.appendChild(style);
@@ -47,31 +47,10 @@ export default abstract class WebComponent extends HTMLElement {
 	}
 
 	async loadHtml() {
-		const template = document.createElement("template");
-		const innerHTML = this.createInnerHtml();
-		template.innerHTML = innerHTML;
-		this.root.appendChild(template.content.cloneNode(true));
-	}
-
-	// Returns the inner HTML of the component
-	// Replaces all placeholders "${...}" with the values of the class properties
-	private createInnerHtml(): string {
-		// replace any ${...} with the value of the attribute with the same name
-		return this.html.replace(/\$\{([^}]*)\}/g, (_, name: string) => {
-			// @ts-ignore
-			const value = this[name];
-			if (value) {
-				if (typeof value == "string" || typeof value == "number")
-					return `${value}`;
-				else
-					console.error(
-						`Property ${name} of ${this.constructor.name} is not a string or number`
-					);
-			} else
-				console.error(
-					`Property ${name} is not defined in ${this.constructor.name}`
-				);
-			return "";
-		});
+		if (this.html !== "") {
+			const template = document.createElement("template");
+			template.innerHTML = this.html;
+			this.root.appendChild(template.content.cloneNode(true));
+		}
 	}
 }
