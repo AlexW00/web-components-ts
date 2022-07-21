@@ -12,6 +12,7 @@ export default defineConfig({
 			},
 			delimiters: ["", ""],
 			include: ["src/components/**/*.ts"],
+			preventAssignment: true,
 		}),
 		GlobPlugin({
 			// enable to let this plugin interpret `import.meta.glob`

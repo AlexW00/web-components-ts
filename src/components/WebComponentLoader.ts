@@ -6,7 +6,6 @@ export default class WebComponentLoader {
 	private static componentDefinitions: ComponentDefinition<WebComponent>[] = [];
 
 	public static async loadAll(): Promise<void> {
-		// @ts-ignore
 		const modules: GlobImport = import.meta.importGlob("./**/*.ts");
 		const modulePaths = Object.keys(modules);
 		for (const modulePath of modulePaths) {
