@@ -44,6 +44,6 @@ class ComponentDefinition<T extends WebComponent> {
 	}
 }
 
-interface GlobImport {
+type GlobImport = {
 	[key: string]: () => Promise<any>;
-}
+};

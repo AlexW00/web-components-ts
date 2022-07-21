@@ -36,7 +36,6 @@ export default abstract class WebComponent extends HTMLElement {
 	async loadHtml() {
 		const template = document.createElement("template");
 		const innerHTML = this.createInnerHtml();
-		console.log(`innerHTML: ${innerHTML}`);
 		template.innerHTML = innerHTML;
 		this.root.appendChild(template.content.cloneNode(true));
 	}

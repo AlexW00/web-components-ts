@@ -1,9 +1,6 @@
 import "./style.css";
 import typescriptLogo from "./typescript.svg";
 import { setupCounter } from "./counter";
-// ignore unused import
-// @ts-ignore
-import ExampleComponent from "./components/ExampleComponent/ExampleComponent";
 import WebComponentLoader from "./components/WebComponentLoader";
 
 WebComponentLoader.loadAll();

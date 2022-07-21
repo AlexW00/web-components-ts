@@ -8,21 +8,15 @@ export default class ExampleComponent extends WebComponent {
 	test: string = "test";
 
 	constructor() {
-		console.log("ExampleComponent constructor");
 		super(html, css);
+	}
+
+	get htmlTagName(): string {
+		return "example-component";
 	}
 
 	onConnected(): void {
 		this.name = this.getAttribute("name") || "";
 		this.root.querySelector("h1")!.innerHTML = `Hello ${this.name}!`;
-		this.root.querySelector("p")!.addEventListener("click", this.onClickP);
-	}
-
-	onClickP = () => {
-		console.log("click");
-	};
-
-	get htmlTagName(): string {
-		return "example-component";
 	}
 }
