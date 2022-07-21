@@ -6,6 +6,13 @@ import { Event } from "./Event";
 
 // JS-Class by Alexander Bazo (modified)
 
+// Usage:
+// Sending Events:
+// 	1. extend this class
+// 	2. call notifyAll(eventType, eventData) to send an event
+// Listening for Events:
+// 	- call addEventListener(eventType, callback) on an Observable to listen for events
+
 export abstract class Observable {
 	listener: any = {};
 

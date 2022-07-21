@@ -1,7 +1,14 @@
 import WebComponent from "./WebComponent";
 
-// Class to load all web components in the ./ directory and define them
-// WebComponentLoader.loadAll() must be called before any web component is used
+// ====================================================== //
+// ================= WebComponentLoader ================= //
+// ====================================================== //
+
+// This class is used to load all custom web components (otherwise they won't work).
+
+// Usage:
+// - Call WebComponentLoader.loadAll() at the start of the application
+
 export default class WebComponentLoader {
 	private static componentDefinitions: ComponentDefinition<WebComponent>[] = [];
 
@@ -43,6 +50,7 @@ class ComponentDefinition<T extends WebComponent> {
 	}
 }
 
+// Helper type for the return value of the import.meta.importGlob() function
 type GlobImport = {
 	[key: string]: () => Promise<any>;
 };
