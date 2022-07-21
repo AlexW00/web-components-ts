@@ -7,7 +7,7 @@ import WebComponent from "./WebComponent";
 // This class is used to load all custom web components (otherwise they won't work).
 
 // Usage:
-// - Call WebComponentLoader.loadAll() at the start of the application
+// - Call WebComponentLoader.loadAll().then(() => {...}) at the start of the application
 
 export default class WebComponentLoader {
 	private static componentDefinitions: ComponentDefinition<WebComponent>[] = [];

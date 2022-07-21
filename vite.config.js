@@ -3,20 +3,15 @@ import replace from "@rollup/plugin-replace";
 import GlobPlugin from "vite-plugin-glob";
 
 export default defineConfig({
-	// mark components as assets
-	assetsInclude: ["components/**/*.html", "components/**/*.css"],
 	plugins: [
 		replace({
 			values: {
-				'.html";': '.html?raw";',
+				'.html";': '.html?raw";', // replace .html with .html?raw to make html imports consistent with css imports
 			},
 			delimiters: ["", ""],
 			include: ["src/components/**/*.ts"],
 			preventAssignment: true,
 		}),
-		GlobPlugin({
-			// enable to let this plugin interpret `import.meta.glob`
-			// takeover: true,
-		}),
+		GlobPlugin(), // plugin needed by WebComponentLoader to import all modules automatically
 	],
 });

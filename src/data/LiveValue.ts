@@ -39,7 +39,7 @@ export class LiveValue<T> extends Observable {
 		},
 
 		// return new proxy for nested objects
-		// to avoid creating new proxies for already proxied objects the following code was adopted from:
+		// to avoid creating new proxies for already proxied objects, the following code was adopted from:
 		// https://stackoverflow.com/questions/41299642/how-to-use-javascript-proxy-for-nested-objects
 		get: (object: any, key: string | symbol) => {
 			if (key == "isProxy") return true;
