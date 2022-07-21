@@ -30,19 +30,16 @@ export default class ExampleComponent extends WebComponent {
 
 	// override onConnected, to add listeners, set data, etc.
 	onConnected(): void {
-		// set the initial values of the component
+		// select the element using querySelector and set the value of the element
 		this.root.querySelector(
 			"h1"
 		)!.innerHTML = `Hello ${this.exampleViewModel.value.name}!`;
 
-		this.root.querySelector(
-			"#count"
-		)!.innerHTML = `${this.exampleViewModel.value.count}`;
+		// alternatively, you can use the this.select(selector) shortcut to get the element
+		this.select("#count")!.innerHTML = `${this.exampleViewModel.value.count}`;
 
 		// set the listeners for the button and the view model
-		this.root
-			.querySelector("button")!
-			.addEventListener("click", this.onButtonClicked);
+		this.select("button")!.addEventListener("click", this.onButtonClicked);
 
 		this.exampleViewModel.addEventListener("change", this.onViewModelChanged);
 	}
@@ -55,9 +52,7 @@ export default class ExampleComponent extends WebComponent {
 	// this method is called, when the view model changes
 	// -> we need to update our component with the new values
 	onViewModelChanged = (data: any) => {
-		this.root.querySelector(
-			"#count"
-		)!.innerHTML = `${this.exampleViewModel.value.count}`;
+		this.select("#count")!.innerHTML = `${this.exampleViewModel.value.count}`;
 		console.log("COMPONENT ViewModel changed:", data);
 	};
 }

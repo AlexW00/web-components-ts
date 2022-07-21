@@ -32,6 +32,16 @@ export default abstract class WebComponent extends HTMLElement {
 		else throw new Error("WebComponent.root is not available yet");
 	}
 
+	// shortcut for this.root.querySelector(selector)
+	select<E extends HTMLElement>(selector: string): E | null {
+		return this.root.querySelector(selector);
+	}
+
+	// shortcut for this.root.querySelectorAll(selector)
+	selectAll<E extends Element = Element>(selectors: string): NodeListOf<E> {
+		return this.root.querySelectorAll(selectors);
+	}
+
 	async connectedCallback() {
 		this.loadStylesheet();
 		this.loadHtml();
