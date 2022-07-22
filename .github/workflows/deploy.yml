@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run: deploy.sh
+    - run: ../../deploy.sh
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
