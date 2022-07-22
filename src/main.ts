@@ -5,6 +5,7 @@ import ExampleModel from "./data/models/ExampleModel";
 
 const exampleModel: ExampleModel = new ExampleModel("John", 0);
 
+// Load all Web Components
 WebComponentLoader.loadAll().then(() => {
 	const exampleComponent: ExampleComponent = new ExampleComponent(
 		exampleModel.getViewModel()
