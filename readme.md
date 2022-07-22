@@ -25,6 +25,7 @@ Web Components allow you to create custom HTML elements that can be used in your
 3. Use the component either in HTML or in TypeScript:
    - in HTML: `<my-component></my-component>`
    - in TypeScript: `const myComponent = new MyComponent()`
+4. (don't forget to call WebComponentLoader.loadAll().then(() => {...}) at the start of your application)
 
 For examples, see the [ExampleWebComponent](./src/components/ExampleComponent/)
 
