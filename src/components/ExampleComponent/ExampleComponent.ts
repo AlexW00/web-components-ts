@@ -29,6 +29,7 @@ export default class ExampleComponent extends WebComponent {
 	}
 
 	// override onConnected, to add listeners, set data, etc.
+	// -> this method is called, when the component is connected to the DOM
 	onConnected(): void {
 		// select the element using querySelector and set the value of the element
 		this.root.querySelector(

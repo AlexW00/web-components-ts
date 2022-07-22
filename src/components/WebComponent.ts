@@ -13,8 +13,8 @@ export default abstract class WebComponent extends HTMLElement {
 
 	constructor(html?: string, css?: string) {
 		super();
-		this.html = html ?? ""; // the html of the component
-		this.css = css ?? ""; // css is optional
+		this.html = html ?? "";
+		this.css = css ?? "";
 		this.attachShadow({ mode: "open" });
 	}
 

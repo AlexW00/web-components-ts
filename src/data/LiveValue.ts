@@ -26,7 +26,7 @@ export class LiveValue<T> extends Observable {
 	}
 
 	private _createProxy(value: Object): T {
-		return new Proxy(value, this._proxyHandler) as unknown as T;
+		return new Proxy(value, this._proxyHandler) as T;
 	}
 
 	private _proxyHandler = {
