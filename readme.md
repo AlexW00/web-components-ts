@@ -62,6 +62,15 @@ For an example, see [EventBus](./src/events/EventBus.ts)
 
 For an example, see [Model](./src/data/models/ExampleModel.ts)
 
+#### ModelStore
+
+`ModelStore` is a singleton, where all Models should be stored. That way, they can be accessed from anywhere in the application.
+1. import the `ModelStore` singleton
+2. use `ModelStore.addModel(model)` to add a model to the store
+3. use ModelStore.findModel(), ModelStore.findModels() and ModelStore.getModelById() retrieve models from the store
+
+For an example, see [ModelStore](./src/data/ModelStore.ts)
+
 #### LiveData
 
 `LiveData` is a wrapper class that allows you to make any existing object observable.

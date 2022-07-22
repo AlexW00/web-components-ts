@@ -7,12 +7,12 @@ import WebComponent from "./WebComponent";
 // This class is used to load all custom web components (otherwise they won't work).
 
 // Usage:
-// - Call WebComponentLoader.loadAll().then(() => {...}) at the start of the application
+// - Call WebComponentLoader.loadComponents().then(() => {...}) at the start of the application
 
 export default class WebComponentLoader {
 	private static componentDefinitions: ComponentDefinition<WebComponent>[] = [];
 
-	public static async loadAll(): Promise<void> {
+	public static async initComponentDefinitions(): Promise<void> {
 		const modules: GlobImport = import.meta.importGlob("./**/*.ts");
 		const modulePaths = Object.keys(modules);
 		for (const modulePath of modulePaths) {
