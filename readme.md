@@ -6,15 +6,15 @@ This repo contains a basic template for working with Web Components in Typescrip
 
 Web Components allow you to create custom HTML elements that can be used in your web pages. This starter template contains a few basic features:
 
-- modularity:
-  - you can define the HTML, CSS, and TypeScript of your Web Components in separate files
-  - using the Model class, the state of your Web Components can be kept separate from the components
-- minimalism:
+- ⚛️ Modularity:
+  - write HTML, CSS, and TypeScript in separate files
+  - Models and ViewModels, keep the state separate from the DOM
+- ▫️ Minimalism:
   - no external dependencies, only Vite and vanilla TypeScript
-- powerful:
-  - using the pubSub pattern, you can easily subscribe to events and publish them
+- 💪 Powerful:
+  - pubSub pattern for event handling and communication
 
-# Docs
+# 📖 Docs
 
 ## Creating your own components
 
@@ -36,6 +36,7 @@ Extending `Observable` provides a class with basic pubSub functionality:
 1. create a class that extends `Observable`
 2. call `.addEventListener` on objects of that class to subscribe to events
 3. call `notifyAll` to publish an event to all subscribers
+
 For an example, see [Observable](./src/events/Observable.ts)
 
 ### EventBus
@@ -44,6 +45,7 @@ If you wish to send global events, you can use the `EventBus` class:
 1. import the `EventBus` singleton 
 2. call `.addEventListener` to subscribe to events
 3. call `.notifyAll` to publish an event to all subscribers
+
 For an example, see [EventBus](./src/events/EventBus.ts)
 
 ### State management
@@ -55,12 +57,14 @@ For an example, see [EventBus](./src/events/EventBus.ts)
 2. call `.addEventListener` to subscribe to changes
 3. call `liveData.value` to get the current value
 4. call `liveData.value = newValue` to update the value
+
 For an example, see [LiveData](./src/data/LiveData.ts)
 
 ### Model
 
 `Model` represents a basic data structure thats used in your application.
 1. extend `Model` and define the properties of your model
+
 For an example, see [Model](./src/data/models/ExampleModel.ts)
 
 ### ViewModel
@@ -68,6 +72,7 @@ For an example, see [Model](./src/data/models/ExampleModel.ts)
 `ViewModel` is a wrapper class that wraps any Model in a LiveData object. Use ViewModels instead of Models in your components if you want to keep the state of your component separate from the state of your application.
 1. call `model.getViewModel()` to get the ViewModel instance of your model
 2. use the `LiveValue` methods detailed above to get, set and listen to value changes of the Model
+
 For an example, see [ViewModel](./src/data/ViewModel.ts)
 
 # Usage
