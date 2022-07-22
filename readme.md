@@ -18,7 +18,7 @@ Web Components allow you to create custom HTML elements that can be used in your
 
 ### How to: Create Components
 
-TLDR: Extend `WebComponent` to define your own components.
+*tldr: Extend `WebComponent` to define your own components.*
 
 1. Create an html (and css) file for your component in a new folder
 2. Create a new ts class that extends `WebComponent`
@@ -30,7 +30,7 @@ For examples, see the [ExampleWebComponent](./src/components/ExampleComponent/)
 
 ### How to: Communicate
 
-TLDR: Communication is based on the pubSub pattern. Extend `Observable` to make your class observable, use `EventBus` for global communication.
+*tldr: Communication is based on the pubSub pattern. Extend `Observable` to make your class observable, use `EventBus` for global communication.*
 
 #### Observable
 
@@ -52,7 +52,7 @@ For an example, see [EventBus](./src/events/EventBus.ts)
 
 ### How to: Manage state
 
-TLDR: Create Models to define data structures, use them via ViewModels. Use LiveData to make any other object observable.
+*tldr: Create Models to define data structures, use them via ViewModels. Use LiveData to make any other object observable.*
 
 #### Model
 
