@@ -6,17 +6,17 @@ This repo contains a basic template for working with Web Components in Typescrip
 
 Web Components allow you to create custom HTML elements that can be used in your web pages. This starter template contains a few basic features:
 
-- ⚛️ Modularity:
+- ⚛️ Modular:
   - write HTML, CSS, and TypeScript in separate files
   - Models and ViewModels, keep the state separate from the DOM
-- ▫️ Minimalism:
+- 🪶 Minimal:
   - no external dependencies, only Vite and vanilla TypeScript
 - 💪 Powerful:
   - pubSub pattern for event handling and communication
 
-# 📖 Docs
+## 📖 Docs
 
-## Creating your own components
+### How to: Create Components
 
 1. Create an html (and css) file for your component in a new folder
 2. Create a new ts class that extends `WebComponent`
@@ -26,11 +26,11 @@ Web Components allow you to create custom HTML elements that can be used in your
 
 For examples, see the [ExampleWebComponent](./src/components/ExampleComponent/)
 
-## Communicating with other components
+### How to: Communicate
 
 - communication is based on the pubSub pattern, various classes are provided to facilitate this:
 
-### Observable
+#### Observable
 
 Extending `Observable` provides a class with basic pubSub functionality:
 1. create a class that extends `Observable`
@@ -39,7 +39,7 @@ Extending `Observable` provides a class with basic pubSub functionality:
 
 For an example, see [Observable](./src/events/Observable.ts)
 
-### EventBus
+#### EventBus
 
 If you wish to send global events, you can use the `EventBus` class:
 1. import the `EventBus` singleton 
@@ -48,9 +48,16 @@ If you wish to send global events, you can use the `EventBus` class:
 
 For an example, see [EventBus](./src/events/EventBus.ts)
 
-### State management
+### How to: Manage state
 
-### LiveData
+#### Model
+
+`Model` represents a basic data structure thats used in your application.
+1. extend `Model` and define the properties of your model
+
+For an example, see [Model](./src/data/models/ExampleModel.ts)
+
+#### LiveData
 
 `LiveData` is a wrapper class that allows you to make any existing object observable.
 1. use `new LiveData(value)` to create a new `LiveData` object
@@ -60,14 +67,7 @@ For an example, see [EventBus](./src/events/EventBus.ts)
 
 For an example, see [LiveData](./src/data/LiveData.ts)
 
-### Model
-
-`Model` represents a basic data structure thats used in your application.
-1. extend `Model` and define the properties of your model
-
-For an example, see [Model](./src/data/models/ExampleModel.ts)
-
-### ViewModel
+#### ViewModel
 
 `ViewModel` is a wrapper class that wraps any Model in a LiveData object. Use ViewModels instead of Models in your components if you want to keep the state of your component separate from the state of your application.
 1. call `model.getViewModel()` to get the ViewModel instance of your model
@@ -75,17 +75,18 @@ For an example, see [Model](./src/data/models/ExampleModel.ts)
 
 For an example, see [ViewModel](./src/data/ViewModel.ts)
 
-# Usage
+## Usage
 
-1. clone the repo
-2. run `npm install`
+1. use the template to create your own repo
+2. clone your repo
+3. run `npm install`
 
-## Development
+### Development
 
 1. run `npm run dev`
 2. make changes to the code
 
-## Build preview
+### Build preview
 
 1. run `npm run build`
 2. run `npm run preview` and open the preview in a browser
