@@ -53,7 +53,7 @@ For an example, see [EventBus](src/lib/events/EventBus.ts)
 
 ### How to: Manage state
 
-*tldr: Create Models to define data structures, use them via ViewModels. Use LiveValue to make any other object observable.*
+*tldr: Create Models to define data structures, store them in ModelStore and use them via ViewModels in your Components. Use LiveValue to make any other object observable.*
 
 #### Model
 
