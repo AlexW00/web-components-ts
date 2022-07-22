@@ -1,6 +1,6 @@
 import ExampleModel from "../../data/models/ExampleModel";
-import ViewModel from "../../data/ViewModel";
-import WebComponent from "../WebComponent";
+import ViewModel from "../../lib/data/ViewModel";
+import WebComponent from "../../lib/components/WebComponent";
 
 // ====================================================== //
 // ================== ExampleComponent ================== //

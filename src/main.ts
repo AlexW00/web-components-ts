@@ -1,8 +1,8 @@
 import ExampleComponent from "./components/ExampleComponent/ExampleComponent";
-import WebComponentLoader from "./components/WebComponentLoader";
-import { LiveValue } from "./data/LiveValue";
+import WebComponentLoader from "./lib/components/WebComponentLoader";
+import { LiveValue } from "./lib/data/LiveValue";
 import ExampleModel from "./data/models/ExampleModel";
-import ModelStore from "./data/ModelStore";
+import ModelStore from "./lib/data/ModelStore";
 
 WebComponentLoader.initComponentDefinitions() // Initialize the WebComponent definitions
 	.then(() => ModelStore.initModels()) // Initialize the model store

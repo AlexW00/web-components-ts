@@ -1,4 +1,4 @@
-import Model from "../Model";
+import Model from "../../lib/data/Model";
 
 export default class ExampleModel extends Model {
 	name: string;

@@ -11,7 +11,7 @@ export default abstract class WebComponent extends HTMLElement {
 	html: string;
 	css: string;
 
-	constructor(html?: string, css?: string) {
+	protected constructor(html?: string, css?: string) {
 		super();
 		this.html = html ?? "";
 		this.css = css ?? "";
@@ -48,7 +48,7 @@ export default abstract class WebComponent extends HTMLElement {
 		this.onConnected();
 	}
 
-	async loadStylesheet() {
+	loadStylesheet() {
 		if (this.css !== "") {
 			const style = document.createElement("style");
 			style.innerHTML = this.css;
@@ -56,7 +56,7 @@ export default abstract class WebComponent extends HTMLElement {
 		}
 	}
 
-	async loadHtml() {
+	loadHtml() {
 		if (this.html !== "") {
 			const template = document.createElement("template");
 			template.innerHTML = this.html;

@@ -1,5 +1,3 @@
-import { PropertyDescription } from "../typings/declarations";
-import ModelStore from "./ModelStore";
 import ViewModel from "./ViewModel";
 
 // ====================================================== //
@@ -14,7 +12,7 @@ export default abstract class Model {
 	private _viewModel: ViewModel<this> | undefined;
 	private static _modelCounts: Map<string, number> = new Map<string, number>();
 
-	constructor() {
+	protected constructor() {
 		this._generateId();
 	}
 

@@ -1,5 +1,5 @@
 import Model from "./Model";
-import ExampleModel from "./models/ExampleModel";
+import ExampleModel from "../../data/models/ExampleModel";
 
 // ====================================================== //
 // ===================== ModelStore ===================== //

@@ -54,7 +54,7 @@ export class LiveValue<T> extends Observable {
 			const prop = object[key];
 			if (typeof prop == "undefined") return;
 			else if (!prop.isProxy) {
-				if (typeof prop == "object" && prop != null) {
+				if (typeof prop == "object") {
 					return this._createProxy(prop);
 				}
 			}
