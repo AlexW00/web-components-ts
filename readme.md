@@ -53,7 +53,7 @@ For an example, see [EventBus](./src/events/EventBus.ts)
 
 ### How to: Manage state
 
-*tldr: Create Models to define data structures, use them via ViewModels. Use LiveData to make any other object observable.*
+*tldr: Create Models to define data structures, use them via ViewModels. Use LiveValue to make any other object observable.*
 
 #### Model
 
@@ -62,19 +62,19 @@ For an example, see [EventBus](./src/events/EventBus.ts)
 
 For an example, see [Model](./src/data/models/ExampleModel.ts)
 
-#### LiveData
+#### LiveValue
 
-`LiveData` is a wrapper class that allows you to make any existing object observable.
-1. use `new LiveData(value)` to create a new `LiveData` object
+`LiveValue` is a wrapper class that allows you to make any existing object observable.
+1. use `new LiveValue(value)` to create a new `LiveValue` object
 2. call `.addEventListener` to subscribe to changes
 3. call `liveData.value` to get the current value
 4. call `liveData.value = newValue` to update the value
 
-For an example, see [LiveData](./src/data/LiveData.ts)
+For an example, see [LiveValue](./src/data/LiveValue.ts)
 
 #### ViewModel
 
-`ViewModel` is a wrapper class that wraps any Model in a LiveData object. Use ViewModels instead of Models in your components if you want to keep the state of your component separate from the state of your application.
+`ViewModel` is a wrapper class that wraps any Model in a LiveValue object. Use ViewModels instead of Models in your components if you want to keep the state of your component separate from the state of your application.
 1. call `model.getViewModel()` to get the ViewModel instance of your model
 2. use the `LiveValue` methods detailed above to get, set and listen to value changes of the Model
 
