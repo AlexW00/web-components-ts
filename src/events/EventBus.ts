@@ -10,6 +10,11 @@ import { Observable } from "./Observable";
 // - Send events: EventBus.notifyAll(eventType, eventData)
 // - Listen for events: EventBus.addEventListener(eventType, callback)
 
+// Example:
+// import { EventBus } from "./EventBus";
+// EventBus.addEventListener("someEvent", (data) => {...}) // listen for "someEvent" events
+// EventBus.notifyAll("someEvent", {some: "data"}) // send "someEvent" event
+
 class EventBus extends Observable {
 	constructor() {
 		super();

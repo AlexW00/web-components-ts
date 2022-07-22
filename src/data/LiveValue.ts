@@ -12,6 +12,13 @@ import { Observable } from "../events/Observable";
 // 3. to get the value of the LiveValue object, call exampleLiveValue.value
 // 4. to set the value of the LiveValue object, call exampleLiveValue.value = newValue
 
+// Example:
+// import { LiveValue } from "./LiveValue";
+// let exampleLiveValue = new LiveValue("some data");
+// exampleLiveValue.addEventListener(LiveValue.LIVE_DATA_CHANGED_EVENT, (data) => {...}) // listen for LiveValue.LIVE_DATA_CHANGED_EVENT events
+// console.log(exampleLiveValue.value) // get the value of the LiveValue object and print it (-> "some data")
+// exampleLiveValue.value = "new data" // set the value of the LiveValue object (-> automatically notifies all listeners)
+
 export class LiveValue<T> extends Observable {
 	static LIVE_DATA_CHANGED_EVENT = "change";
 	private _value!: T;
