@@ -26,6 +26,12 @@ export default abstract class WebComponent extends HTMLElement {
 	// Example: A component <example-component /> would return "example-component"
 	abstract get htmlTagName(): string;
 
+	// Wrapper for making dispatchEvent consistent with the Observer pattern
+	protected notifyAll(eventName: string, data?: any) {
+		const event = new CustomEvent(eventName, { detail: data });
+		this.dispatchEvent(event);
+	}
+
 	// Returns the root element of the component
 	get root(): ShadowRoot {
 		if (this.shadowRoot) return this.shadowRoot;
