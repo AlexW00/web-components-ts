@@ -11,7 +11,7 @@
    - in TypeScript: `const myComponent = new MyComponent()`
 4. (don't forget to call `WebComponentLoader.loadAll().then(() => {...})` at the start of your application)
 
-For examples, see the [ExampleWebComponent](src/components/ExampleComponent/)
+For examples, see the [ExampleWebComponent](/src/components/ExampleComponent/)
 
 ### How to: Communicate
 
@@ -24,7 +24,7 @@ Extending `Observable` provides a class with basic pubSub functionality:
 2. call `.addEventListener` on objects of that class to subscribe to events
 3. call `notifyAll` to publish an event to all subscribers
 
-For an example, see [Observable](src/lib/events/Observable.ts)
+For an example, see [Observable](/src/lib/events/Observable.ts)
 
 #### EventBus
 
@@ -33,7 +33,7 @@ If you wish to send global events, you can use the `EventBus` class:
 2. call `.addEventListener` to subscribe to events
 3. call `.notifyAll` to publish an event to all subscribers
 
-For an example, see [EventBus](src/lib/events/EventBus.ts)
+For an example, see [EventBus](/src/lib/events/EventBus.ts)
 
 ### How to: Manage state
 
@@ -44,7 +44,7 @@ For an example, see [EventBus](src/lib/events/EventBus.ts)
 `Model` represents a basic data structure thats used in your application.
 1. extend `Model` and define the properties of your model
 
-For an example, see [Model](src/data/models/ExampleModel.ts)
+For an example, see [Model](/src/data/models/ExampleModel.ts)
 
 #### ModelStore
 
@@ -53,7 +53,7 @@ For an example, see [Model](src/data/models/ExampleModel.ts)
 2. use `ModelStore.addModel(model)` to add a model to the store
 3. use ModelStore.findModel(), ModelStore.findModels() and ModelStore.getModelById() retrieve models from the store
 
-For an example, see [ModelStore](src/lib/data/ModelStore.ts)
+For an example, see [ModelStore](/src/lib/data/ModelStore.ts)
 
 #### LiveData
 
@@ -63,7 +63,7 @@ For an example, see [ModelStore](src/lib/data/ModelStore.ts)
 3. call `liveData.value` to get the current value
 4. call `liveData.value = newValue` to update the value
 
-For an example, see [LiveValue](src/lib/data/LiveValue.ts)
+For an example, see [LiveValue](/src/lib/data/LiveValue.ts)
 
 #### ViewModel
 
@@ -71,4 +71,4 @@ For an example, see [LiveValue](src/lib/data/LiveValue.ts)
 1. call `model.getViewModel()` to get the ViewModel instance of your model
 2. use the `LiveValue` methods detailed above to get, set and listen to value changes of the Model
 
-For an example, see [ViewModel](src/lib/data/ViewModel.ts)
+For an example, see [ViewModel](/src/lib/data/ViewModel.ts)
