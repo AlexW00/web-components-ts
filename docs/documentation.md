@@ -55,7 +55,7 @@ For an example, see [Model](/src/data/models/ExampleModel.ts)
 
 For an example, see [ModelStore](/src/lib/data/ModelStore.ts)
 
-#### LiveData
+#### LiveValue
 
 `LiveValue` is a wrapper class that allows you to make any existing object observable.
 1. use `new LiveValue(value)` to create a new `LiveValue` object
