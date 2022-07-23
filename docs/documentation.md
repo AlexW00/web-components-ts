@@ -72,3 +72,7 @@ For an example, see [LiveValue](/src/lib/data/LiveValue.ts)
 2. use the `LiveValue` methods detailed above to get, set and listen to value changes of the Model
 
 For an example, see [ViewModel](/src/lib/data/ViewModel.ts)
+
+## 🌅 Cheat Sheet
+
+![📖 Cheat Sheet](docs/res/../../res/web-component-architecture.svg)
