@@ -12,7 +12,7 @@ import WebComponent from "./WebComponent";
 export default class WebComponentLoader {
 	private static componentDefinitions: ComponentDefinition<WebComponent>[] = [];
 
-	public static async initComponentDefinitions(): Promise<void> {
+	public static async loadAll(): Promise<void> {
 		const modules: GlobImport = import.meta.importGlob("../../components/**/*.ts");
 		const modulePaths = Object.keys(modules);
 		for (const modulePath of modulePaths) {

@@ -37,41 +37,47 @@ For an example, see [EventBus](/src/lib/events/EventBus.ts)
 
 ### How to: Manage state
 
-*tldr: Create Models to define data structures, store them in ModelStore and use them via ViewModels in your Components. Use LiveValue to make any other object observable.*
+*tldr: Create Models to define data structures, use them via States in your Components. Use GlobalState to store globally needed States.*
 
 #### Model
 
 `Model` represents a basic data structure thats used in your application.
+NOTE: Use State to make observe/manipulate Models. Don't use Models directly.
 1. extend `Model` and define the properties of your model
 
 For an example, see [Model](/src/data/models/ExampleModel.ts)
 
-#### ModelStore
+#### State
 
-`ModelStore` is a singleton, where all Models should be stored. That way, they can be accessed from anywhere in the application.
-1. import the `ModelStore` singleton
-2. use `ModelStore.addModel(model)` to add a model to the store
-3. use ModelStore.findModel(), ModelStore.findModels() and ModelStore.getModelById() retrieve models from the store
-
-For an example, see [ModelStore](/src/lib/data/ModelStore.ts)
-
-#### LiveValue
-
-`LiveValue` is a wrapper class that allows you to make any existing object observable.
-1. use `new LiveValue(value)` to create a new `LiveValue` object
+`State` is a wrapper class that allows you to make any existing object observable (not just Models).
+1. use `new State(value)` to create a new `State` object
 2. call `.addEventListener` to subscribe to changes
 3. call `liveData.value` to get the current value
 4. call `liveData.value = newValue` to update the value
 
-For an example, see [LiveValue](/src/lib/data/LiveValue.ts)
+For an example, see [State](/src/lib/state/State.ts)
 
-#### ViewModel
+#### GlobalState
 
-`ViewModel` is a wrapper class that wraps any Model in a LiveValue object. Use ViewModels instead of Models in your components if you want to keep the state of your component separate from the state of your application.
-1. call `model.getViewModel()` to get the ViewModel instance of your model
-2. use the `LiveValue` methods detailed above to get, set and listen to value changes of the Model
+`GlobalState` is a singleton, where States, which are needed in many Components, should be stored. 
+That way, they can be accessed from anywhere in the application.
+1. import the `GlobalState` singleton
+2. use `GlobalState.addModel(model)` to add a model to the store
+3. use GlobalState.findModel(), GlobalState.findModels() and GlobalState.getModelById() retrieve models from the store
+4. (don't forget to call GlobalState.init() at the start of the application)
 
-For an example, see [ViewModel](/src/lib/data/ViewModel.ts)
+For an example, see [GlobalState](/src/lib/state/GlobalState.ts)
+
+### How to: Get Data
+
+*tldr: Use DataManager to fetch/save data as Models from external APIs or Databases.*
+
+#### DataManager
+
+`DataManager` is a singleton, in which you define functions to fetch/save Models.
+1. import the `DataManager` singleton
+2. use any of the `DataManager` functions to retrieve data as Models
+3. (don't forget to call DataManager.init() at the start of the application)
 
 ## 🌅 Cheat Sheet
 

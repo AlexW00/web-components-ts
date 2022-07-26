@@ -1,32 +1,32 @@
 import ExampleComponent from "./components/ExampleComponent/ExampleComponent";
 import WebComponentLoader from "./lib/components/WebComponentLoader";
-import { LiveValue } from "./lib/data/LiveValue";
+import State  from "./lib/state/State";
 import ExampleModel from "./data/models/ExampleModel";
-import ModelStore from "./lib/data/ModelStore";
+import GlobalState from "./lib/state/GlobalState";
+import DataManager from "./lib/data/DataManager";
 
-WebComponentLoader.initComponentDefinitions() // Initialize the WebComponent definitions
-	.then(() => ModelStore.initModels()) // Initialize the model store
+WebComponentLoader.loadAll() // Initialize the WebComponent definitions
+	.then(() => DataManager.init()) // Initialize the database connection etc.
+	.then(() => GlobalState.init()) // Initialize the global state
 	.then(() => onApplicationStart()); // Start the application
 
 function onApplicationStart() {
 	// retrieve the example ViewModel from the model store
-	const exampleViewModel = ModelStore.findModel(
-		(model) => model.name === "John",
+	const exampleState = GlobalState.findState(
+		(exampleModel) => exampleModel.name === "John",
 		ExampleModel
-	)!.getViewModel();
+	)!;
 
 	// create the example component and append it to the body
-	const exampleComponent: ExampleComponent = new ExampleComponent(
-		exampleViewModel
-	);
+	const exampleComponent: ExampleComponent = new ExampleComponent(exampleState);
 	document.querySelector<HTMLDivElement>("#app")!.append(exampleComponent);
 
-	// listen to any changes on the exampleViewModel
-	exampleViewModel.addEventListener(
-		LiveValue.LIVE_DATA_CHANGED_EVENT,
+	// listen to any changes on the exampleModel
+	exampleState.addEventListener(
+		State.STATE_CHANGE_EVENT,
 		(data: any) => {
 			console.log("MAIN ViewModel changed:", data);
-			console.log(ModelStore);
+			console.log(GlobalState);
 		}
 	);
 }
