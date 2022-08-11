@@ -14,7 +14,7 @@ const app = () => {
 		.then(() => onApplicationStart()); // Start the application
 
 	function onApplicationStart() {
-		// retrieve the example ViewModel from the model store
+		// retrieve the example Model from the model store
 		const exampleState = GlobalState.findState(
 				(exampleModel) => exampleModel.name === "John",
 				ExampleModel
@@ -25,7 +25,7 @@ const app = () => {
 
 		// listen to any changes on the exampleModel
 		exampleState.addEventListener(State.STATE_CHANGE_EVENT, (data: any) => {
-			console.log("MAIN ViewModel changed:", data);
+			console.log("MAIN Model changed:", data);
 			console.log(GlobalState);
 		});
 	}
