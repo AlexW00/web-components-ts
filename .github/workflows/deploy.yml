@@ -1,12 +1,10 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Build and Deploy
 
 on:
   push:
-    branches: ["master"]
-  pull_request:
     branches: ["master"]
 
 jobs:
@@ -27,8 +25,8 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build --if-present
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy project
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          branch: gh-pages
+          folder: dist

@@ -6,8 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
-		"preview": "vite preview",
-		"deploy": "npm run build && gh-pages -d dist -b master"
+		"preview": "vite preview"
 	},
 	"devDependencies": {
 		"@rollup/plugin-replace": "^4.0.0",
