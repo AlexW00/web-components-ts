@@ -1,5 +1,5 @@
 import State from "./State";
-import DataManager from "../data/DataManager";
+import DataManager from "../../data/DataManager";
 
 // ====================================================== //
 // ===================== GlobalState ===================== //
@@ -22,13 +22,16 @@ import DataManager from "../data/DataManager";
 // );
 
 export default class GlobalState {
-	private static _states: Map<string, State<any>> = new Map<string, State<any>>();
+	private static _states: Map<string, State<any>> = new Map<
+		string,
+		State<any>
+	>();
 
 	// This function is used to initialize all states.
 	// It should be called at the start of the application.
 	public static async init() {
 		const exampleModel = await DataManager.getExampleModel();
-		this.addState(exampleModel.toState())
+		this.addState(exampleModel.toState());
 	}
 
 	// Adds a state to the store.
